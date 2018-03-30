@@ -1,0 +1,614 @@
+##### Crawl Init file ###############################################
+# For descriptions of all options, as well as some more in-depth information
+# on setting them, consult the file
+#    options_guide.txt
+# in your /docs directory. If you can't find it, the file is also available
+# online at:
+# https://github.com/crawl/crawl/blob/master/crawl-ref/docs/options_guide.txt
+#
+# Crawl uses the first file of the following list as its option file:
+#  * init.txt in the -rcdir directory (if specified)
+#  * .crawlrc in the -rcdir directory (if specified)
+#  * init.txt (in the Crawl directory)
+#  * ~/.crawl/init.txt (Unix only)
+#  * ~/.crawlrc (Unix only)
+#  * ~/init.txt (Unix only)
+#  * settings/init.txt (in the Crawl directory)
+
+##### Some basic explanation of option syntax #######################
+# Lines beginning with '#' are comments. The basic syntax is:
+#
+# field = value         or      field.subfield = value
+#
+# Only one specification is allowed per line.
+#
+# The terms are typically case-insensitive except in the fairly obvious
+# cases (the character's name and specifying files or directories when
+# on a system that has case-sensitive filenames).
+#
+# White space is stripped from the beginning and end of the line, as
+# well as immediately before and after the '='. If the option allows
+# multiple comma/semicolon-separated terms (such as
+# autopickup_exceptions), all whitespace around the separator is also
+# trimmed. All other whitespace is left intact.
+#
+# There are three broad types of Crawl options: true/false values (booleans),
+# arbitrary values, and lists of values. The first two types use only the
+# simple =, with later options - which includes your options that are different
+# from the defaults - overriding earlier ones. List options allow using +=, ^=,
+# -=, and = to append, prepend, remove, and reset, respectively. Usually you will
+# want to use += to add to a list option. Lastly, there is := which you can use
+# to create an alias, like so:
+#   ae := autopickup_exceptions
+# From there on, 'ae' will be treated as if it you typed autopickup_exceptions,
+# so you can save time typing it.
+#
+
+##### Other files ###################################################
+# You can include other files from your options file using the 'include'
+# option. Crawl will treat it as if you copied the whole text of that file
+# into your options file in that spot. You can uncomment some of the following
+# lines by removing the beginning '#' to include some of the other files in
+# this folder.
+
+# Some useful, more advanced options, implemented in LUA.
+include = advanced_optioneering.txt
+
+default_manual_training = true
+stop = Your transformation is almost over.
+easy_eat_chunks  = true
+auto_eat_chunks = true
+#show_more = false
+autofight_stop = 75
+confirm_butcher = never
+hp_warning = 30
+travel_avoid_terrain = shallow water
+
+# Abyssal Rune
+force_more_message += Found .* abyssal rune of Zot
+
+# Entrances, Exits, and Arrivals
+force_more_message += Found a frozen archway
+force_more_message += Found a gateway leading out of the Abyss
+force_more_message += Found a labyrinth entrance
+force_more_message += Found a staircase to the Ecumenical Temple
+force_more_message += The mighty Pandemonium lord.*resides here
+
+# Portal Timers
+force_more_message += distant snort
+force_more_message += interdimensional caravan
+force_more_message += invites you to visit
+force_more_message += oppressive heat
+force_more_message += roar of battle
+force_more_message += sound of rushing water
+force_more_message += The drain falls to bits
+force_more_message += There is an entrance to a bailey on this level
+force_more_message += tolling of a bell
+force_more_message += wave of frost
+
+# Traps
+force_more_message += (blundered into a|invokes the power of) Zot
+force_more_message += A huge blade swings out and slices into you
+force_more_message += An alarm trap emits a blaring wail
+force_more_message += The power of Zot is invoked against you
+force_more_message += You (become entangled|are caught) in (a|the) (web|net)
+force_more_message += You fall through a shaft
+force_more_message += You stumble into the trap
+
+# Other
+force_more_message += Another plant grows acid sacs
+force_more_message += One of the plants suddenly grows acid sacs
+force_more_message += The walls and floor vibrate strangely for a moment
+force_more_message += You are suddenly pulled into a different region
+force_more_message += You have a vision of.*gates?
+
+###########
+# Failure #
+###########
+
+force_more_message += do not work when you're silenced
+force_more_message += sense of stasis
+force_more_message += Something interferes with your magic
+force_more_message += The rod doesn't have enough magic points
+force_more_message += The spell fizzles
+force_more_message += The writing blurs in front of your eyes
+force_more_message += The.*is unaffected
+force_more_message += This potion can/'t work under stasis
+force_more_message += This wand has no charges
+force_more_message += too hungry
+force_more_message += You are held in a net
+force_more_message += You are too injured to fight blindly
+force_more_message += You can't gag anything down
+force_more_message += You can't unwield
+force_more_message += You cannot cast spells when silenced
+force_more_message += You cannot cast spells while unable to breathe
+force_more_message += You cannot teleport right now
+force_more_message += You don't have any such object
+force_more_message += You don't have enough magic
+force_more_message += You don't.* that spell
+force_more_message += You fail to use your ability
+force_more_message += You have no appropriate body parts free
+force_more_message += You have no means to grasp a wand firmly enough
+force_more_message += You haven't enough magic at the moment
+force_more_message += You miscast
+force_more_message += Your amulet of stasis
+force_more_message += Your attempt to break free
+force_more_message += Your body armour is too heavy
+
+#############################
+# Bad and Unexpected Things #
+#############################
+
+# Bad things happening to you
+force_more_message += corrodes your equipment
+force_more_message += Your corrosive artefact corrodes you
+force_more_message += are blown away by the wind
+force_more_message += dispelling energy hits you
+force_more_message += infuriates you
+force_more_message += lose consciousness
+force_more_message += mark forms upon you
+force_more_message += MASSIVE DAMAGE
+force_more_message += Ouch! That really hurt!
+force_more_message += silver sears you
+force_more_message += Space bends around you
+force_more_message += Space warps horribly around you
+force_more_message += surroundings become eerily quiet
+force_more_message += Terrible wounds (open|spread) all over you
+force_more_message += The acid corrodes your
+force_more_message += The air around.*erupts in flames
+force_more_message += The air twists around and violently strikes you in flight
+force_more_message += You shudder from the earth-shattering force
+force_more_message += The arrow of dispersal hits you[^r]
+force_more_message += The barbed spikes become lodged in your body
+force_more_message += The barbed spikes dig painfully into your body as you move
+force_more_message += The blast of calcifying dust hits you[^r]
+force_more_message += The poison in your body grows stronger
+force_more_message += The pull of.*song draws you forwards
+force_more_message += The.*engulfs you in water
+force_more_message += The.*grabs you[^r]
+force_more_message += You (are|feel) drained
+force_more_message += You are (blasted|electrocuted)
+force_more_message += You are blown backwards
+force_more_message += You are burned terribly
+force_more_message += You are encased in ice
+force_more_message += You are engulfed in calcifying dust
+force_more_message += You are engulfed in dark miasma
+force_more_message += You are engulfed in mutagenic fog
+force_more_message += You are knocked back
+force_more_message += You are mesmerised
+force_more_message += You are slowing down
+force_more_message += You are trampled
+force_more_message += You convulse
+force_more_message += You feel a (horrible|terrible) chill
+force_more_message += You feel haunted
+force_more_message += You feel your flesh.*rot
+force_more_message += You feel your power drain away
+force_more_message += You feel your power leaking away
+force_more_message += You stumble backwards
+force_more_message += You.*re (confused|more confused|too confused)
+force_more_message += You.*re lethally poisoned
+force_more_message += Your body is wracked with pain
+force_more_message += Your damage is reflected back at you
+force_more_message += Your limbs are stiffening
+force_more_message += Your magical defenses are stripped away
+force_more_message += Your?.*suddenly stops? moving
+
+# Monsters doing bad things
+force_more_message += A tree reaches out and hits you!
+force_more_message += Agitated ravens fly out from beneath the
+force_more_message += begins to recite a word of recall
+force_more_message += Being near the torpor snail leaves you feeling lethargic
+force_more_message += cast banishment
+force_more_message += cast paralyse
+force_more_message += cast Torment
+force_more_message += goes berserk
+force_more_message += The moth of wrath goads something on
+force_more_message += is duplicated
+force_more_message += is no longer invulnerable
+force_more_message += Its appearance distorts for a moment
+force_more_message += Mara seems to draw the.*out of itself
+force_more_message += Mara shimmers
+force_more_message += Miasma billows from the
+force_more_message += shoots a curare
+force_more_message += stands defiantly in death's doorway
+force_more_message += steals.*your
+force_more_message += swoops through the air toward you
+force_more_message += The forest starts to sway and rumble
+force_more_message += The jumping spider pounces on you [^but]
+force_more_message += The octopode crusher throws you
+force_more_message += The shadow imp is revulsed by your support of nature
+force_more_message += The water nymph flows with the water
+force_more_message += The.*offers itself to Yredelemnul
+force_more_message += The.*seems to speed up
+force_more_message += The.*shudders
+force_more_message += There is a horrible\, sudden wrenching feeling in your soul
+force_more_message += Vines fly forth from the trees!
+force_more_message += You are hit by a branch
+force_more_message += You feel you are being watched by something
+force_more_message += Your magical defenses are stripped away
+force_more_message += \'s.*reflects
+force_more_message += Something.*(hits|misses) you(?!r)
+
+# Unexpected situations
+force_more_message += A magical barricade bars your way
+force_more_message += Done waiting
+force_more_message += doors? slams? shut
+force_more_message += It doesn't seem very happy
+force_more_message += Mutagenic energies flood into your body
+force_more_message += Some monsters swap places
+force_more_message += (starving|devoid of blood)
+force_more_message += (The|Your).*falls away!
+force_more_message += The divine light dispels your darkness!
+force_more_message += The walls disappear
+force_more_message += There is a sealed passage
+force_more_message += You are wearing\:
+force_more_message += You can now
+force_more_message += You cannot afford.*fee
+force_more_message += You feel (dopey|clumsy|weak)
+force_more_message += You feel a genetic drift
+force_more_message += You feel monstrous
+force_more_message += You feel your rage building
+force_more_message += You have disarmed
+force_more_message += You have finished your manual
+force_more_message += You have reached level
+force_more_message += You need to eat something NOW
+force_more_message += You stop (a|de)scending the stairs
+force_more_message += You turn into a fleshy mushroom
+force_more_message += Your body shudders with the violent release of wild energies
+force_more_message += Your guardian golem overheats
+force_more_message += your magic stops regenerating
+force_more_message += Your scales start
+force_more_message += your.*devoured
+force_more_message += Your?.*can no longer
+force_more_message += Green shoots are pushing up through the earth
+
+# Things getting better
+stop += contamination has completely
+force_more_message += You can move again
+force_more_message += You slip out of the net
+force_more_message += You.*and break free
+force_more_message += Your fit of retching subsides
+force_more_message += seems mollified
+
+##################
+# Translocations #
+##################
+
+# Teleporting
+force_more_message += You blink
+force_more_message += You.*teleport [^f]
+force_more_message += You feel strangely (unstable|stable)
+force_more_message += You feel your translocation being delayed
+force_more_message += Your surroundings flicker
+force_more_message += Your surroundings seem slightly different
+force_more_message += Your surroundings suddenly seem different
+
+# -Tele
+force_more_message += You cannot blink right now
+force_more_message += You cannot teleport right now
+force_more_message += You feel.*firmly anchored in space
+force_more_message += You are no longer firmly anchored in space
+
+####################
+# Expiring Effects #
+####################
+
+# God Abilities
+# Divine Shield (The Shining One)
+Your divine shield starts to fade.
+Your divine shield fades away.
+# Jelly Prayer (Jiyva)
+Your prayer is over.
+# Mirror Damage (Yredelemnul)
+force_more_message += dark mirror aura disappears
+
+# Player Spells
+# Aura of Abjuration
+stop += Your aura of abjuration expires
+# Death's Door
+force_more_message += time is quickly running out
+force_more_message += life is in your own
+# Enslavement
+force_more_message += is no longer charmed
+# Flight
+force_more_message += You are starting to lose your buoyancy
+stop += You lose control over your flight
+# Haste
+force_more_message += Your extra speed is starting to run out
+force_more_message += You feel yourself slow down
+# Invisibility
+force_more_message += You feel more conspicuous
+force_more_message += You flicker for a moment
+force_more_message += You flicker back
+# Ozocubu's Armour and Condensation Shield
+force_more_message += Your icy (shield|armour) evaporates
+force_more_message += Your.*(shield|armour) melts away
+# Phase Shift
+force_more_message += You feel closer to the material plane
+force_more_message += You are firmly grounded in the material plane once more
+# Repel/Deflect
+stop += missiles spell is about to expire
+force_more_message += You feel less protected from missiles
+# Shroud of Golubria
+stop += shroud begins to fray
+stop += shroud unravels
+force_more_message += Your shroud falls apart
+# Silence
+force_more_message += Your hearing returns
+# Swiftness
+stop += start to feel a little slower
+force_more_message += You feel sluggish
+# Transmutations
+force_more_message += Your transformation is almost over
+force_more_message += You have a feeling this form
+force_more_message += Your skin feels tender
+force_more_message += You feel yourself come back to life
+
+# Other
+# Potion of Resistance
+force_more_message += You start to feel less resistant.
+force_more_message += Your resistance to elements expires
+
+############
+# Religion #
+############
+
+# Gifts or abilities are ready
+# Dithmenos
+force_more_message += You are shrouded in an aura of darkness
+force_more_message += You now sometimes bleed smoke
+force_more_message += You.*no longer.*bleed smoke
+force_more_message += Your shadow no longer tangibly mimics your actions
+force_more_message += Your shadow now sometimes tangibly mimics your actions
+# Gozag
+force_more_message += will now duplicate a non-artefact item
+# Jiyva
+force_more_message += will now unseal the treasures of the Slime Pits
+# Kikubaaqudgha
+force_more_message += Kikubaaqudgha will now enhance your necromancy
+# Lugonu
+force_more_message += Lugonu will now corrupt your weapon
+# Qazlal
+force_more_message += resistances upon receiving elemental damage
+force_more_message += You are surrounded by a storm which can block enemy attacks
+# Ru
+force_more_message += you are ready to make a new sacrifice
+# Sif Muna
+force_more_message += Sif Muna is protecting you from the effects of miscast magic
+# The Shining One
+force_more_message += The Shining One will now bless
+# Zin
+force_more_message += will now cure all your mutations
+# You Screwed Up
+force_more_message += is no longer ready
+
+# Poor Decisions
+force_more_message += You really shouldn't be using
+
+# Wrath
+force_more_message += Nemelex gives you another card to finish dealing
+force_more_message += Fedhas invokes the elements against you
+force_more_message += Lugonu sends minions to punish you
+force_more_message += Okawaru sends forces against you
+force_more_message += wrath finds you
+
+# Xom Effects
+force_more_message += staircase.*moves
+force_more_message += is too large for the net to hold
+
+# Other
+force_more_message += Jiyva alters your body
+: if you.god() == "Xom" then
+    force_more_message += god:
+: end
+
+: if not string.find(you.god(), "Jiyva") then
+  force_more_message += splits in two
+:end
+
+################
+# Hell Effects #
+################
+
+force_more_message += A gut-wrenching scream fills the air
+force_more_message += Brimstone rains from above
+force_more_message += Die\, mortal
+force_more_message += Leave now\, before it is too late
+force_more_message += Something frightening happens
+force_more_message += Trespassers are not welcome here
+force_more_message += We do not forgive those who trespass against us
+force_more_message += We have you now
+force_more_message += You do not belong in this place
+force_more_message += You feel a terrible foreboding
+force_more_message += You feel lost and a long\, long way from home
+force_more_message += You hear diabolical laughter
+force_more_message += You hear words spoken in a strange and terrible language
+force_more_message += You sense a hostile presence
+force_more_message += You sense an ancient evil watching you
+force_more_message += You shiver with fear
+force_more_message += You smell brimstone
+force_more_message += You suddenly feel all small and vulnerable
+force_more_message += You will not leave this place
+
+############
+# Monsters #
+############
+
+# Arriving Unexpectedly
+force_more_message += appears in a shower of sparks
+force_more_message += appears out of thin air
+force_more_message += comes (up|down) the stairs
+force_more_message += Something appears in a flash of light
+force_more_message += The.*is a mimic
+force_more_message += You sense the presence of something unfriendly
+force_more_message += The.*answers the.*call
+force_more_message += Wisps of shadow swirl around
+force_more_message += Shadows whirl around
+
+# Item Use
+force_more_message += drinks a potion
+force_more_message += evokes.*(amulet|ring)
+force_more_message += reads a scroll
+force_more_message += zaps a (wand|rod)
+
+# Uniques
+force_more_message += 27-headed.*(comes? into view|opens the|appears? from)
+force_more_message += Agnes.*(comes? into view|opens the|appears? from)
+force_more_message += Aizul.*(comes? into view|opens the|appears? from)
+force_more_message += Antaeus.*(comes? into view|opens the|appears? from)
+force_more_message += Arachne.*(comes? into view|opens the|appears? from)
+force_more_message += Asmodeus.*(comes? into view|opens the|appears? from)
+force_more_message += Asterion.*(comes? into view|opens the|appears? from)
+force_more_message += Azrael.*(comes? into view|opens the|appears? from)
+force_more_message += Blork the orc.*(comes? into view|opens the|appears? from)
+force_more_message += Boris.*(comes? into view|opens the|appears? from)
+force_more_message += Cerebov.*(comes? into view|opens the|appears? from)
+force_more_message += Crazy Yiuf.*(comes? into view|opens the|appears? from)
+force_more_message += Dispater.*(comes? into view|opens the|appears? from)
+force_more_message += Dissolution.*(comes? into view|opens the|appears? from)
+force_more_message += Donald.*(comes? into view|opens the|appears? from)
+force_more_message += Dowan.*(comes? into view|opens the|appears? from)
+force_more_message += Duvessa.*(comes? into view|opens the|appears? from)
+force_more_message += Edmund.*(comes? into view|opens the|appears? from)
+force_more_message += Enchantress.*(comes? into view|opens the|appears? from)
+force_more_message += Ereshkigal.*(comes? into view|opens the|appears? from)
+force_more_message += Erica.*(comes? into view|opens the|appears? from)
+force_more_message += Erolcha.*(comes? into view|opens the|appears? from)
+force_more_message += Eustachio.*(comes? into view|opens the|appears? from)
+force_more_message += Fannar.*(comes? into view|opens the|appears? from)
+force_more_message += Frances.*(comes? into view|opens the|appears? from)
+force_more_message += Francis.*(comes? into view|opens the|appears? from)
+force_more_message += Frederick.*(comes? into view|opens the|appears? from)
+force_more_message += Gastronok.*(comes? into view|opens the|appears? from)
+force_more_message += Geryon.*(comes? into view|opens the|appears? from)
+force_more_message += Gloorx Vloq.*(comes? into view|opens the|appears? from)
+force_more_message += Grinder.*(comes? into view|opens the|appears? from)
+force_more_message += Grum.*(comes? into view|opens the|appears? from)
+force_more_message += Harold.*(comes? into view|opens the|appears? from)
+force_more_message += Ignacio.*(comes? into view|opens the|appears? from)
+force_more_message += Ijyb.*(comes? into view|opens the|appears? from)
+force_more_message += Ilsuiw.*(comes? into view|opens the|appears? from)
+force_more_message += Jorgrun.*(comes? into view|opens the|appears? from)
+force_more_message += Jory.*(comes? into view|opens the|appears? from)
+force_more_message += Jessica.*(comes? into view|opens the|appears? from)
+force_more_message += Joseph.*(comes? into view|opens the|appears? from)
+force_more_message += Josephine.*(comes? into view|opens the|appears? from)
+force_more_message += Jozef.*(comes? into view|opens the|appears? from)
+force_more_message += Khufu.*(comes? into view|opens the|appears? from)
+force_more_message += Kirke.*(comes? into view|opens the|appears? from)
+force_more_message += Lamia.*(comes? into view|opens the|appears? from)
+force_more_message += Lom Lobon.*(comes? into view|opens the|appears? from)
+force_more_message += Louise.*(comes? into view|opens the|appears? from)
+force_more_message += Mara.*(comes? into view|opens the|appears? from)
+force_more_message += Margery.*(comes? into view|opens the|appears? from)
+force_more_message += Maud.*(comes? into view|opens the|appears? from)
+force_more_message += Maurice.*(comes? into view|opens the|appears? from)
+force_more_message += Menkaure.*(comes? into view|opens the|appears? from)
+force_more_message += Mennas.*(comes? into view|opens the|appears? from)
+force_more_message += Mnoleg.*(comes? into view|opens the|appears? from)
+force_more_message += Murray.*(comes? into view|opens the|appears? from)
+force_more_message += Natasha.*(comes? into view|opens the|appears? from)
+force_more_message += Nergalle.*(comes? into view|opens the|appears? from)
+force_more_message += Nessos.*(comes? into view|opens the|appears? from)
+force_more_message += Nikola.*(comes? into view|opens the|appears? from)
+force_more_message += Norris.*(comes? into view|opens the|appears? from)
+force_more_message += Pikel.*(comes? into view|opens the|appears? from)
+force_more_message += Polyphemus.*(comes? into view|opens the|appears? from)
+force_more_message += Prince Ribbit.*(comes? into view|opens the|appears? from)
+force_more_message += Psyche.*(comes? into view|opens the|appears? from)
+force_more_message += Purgy.*(comes? into view|opens the|appears? from)
+force_more_message += Robin.*(comes? into view|opens the|appears? from)
+force_more_message += Roxanne.*(comes? into view|opens the|appears? from)
+force_more_message += Rupert.*(comes? into view|opens the|appears? from)
+force_more_message += Saint Roka.*(comes? into view|opens the|appears? from)
+force_more_message += Sigmund.*(comes? into view|opens the|appears? from)
+force_more_message += Snorg.*(comes? into view|opens the|appears? from)
+force_more_message += Sojobo.*(comes? into view|opens the|appears? from)
+force_more_message += Sonja.*(comes? into view|opens the|appears? from)
+force_more_message += Terence.*(comes? into view|opens the|appears? from)
+force_more_message += The Lernaean hydra.*(comes? into view|opens the|appears? from)
+force_more_message += The royal jelly.*(comes? into view|opens the|appears? from)
+force_more_message += The Serpent of Hell.*(comes? into view|opens the|appears? from)
+force_more_message += Tiamat.*(comes? into view|opens the|appears? from)
+force_more_message += Urug.*(comes? into view|opens the|appears? from)
+force_more_message += Vashnia.*(comes? into view|opens the|appears? from)
+force_more_message += Wiglaf.*(comes? into view|opens the|appears? from)
+force_more_message += Xtahua.*(comes? into view|opens the|appears? from)
+
+# Malmutate enemies
+force_more_message += .*Shining Eye.*(comes? into view|opens the|appears? from)
+force_more_message += .*Neqoxec.*(comes? into view|opens the|appears? from)
+force_more_message += .*Cacodemon.*(comes? into view|opens the|appears? from)
+force_more_message += .*wretched star.*comes? into view
+force_more_message += .*Orbs? of Fire.*(comes? into view|opens the|appears? from)
+
+# Misc dangerous enemies
+force_more_message += .*player ghost.* comes? into view
+force_more_message += .*Hellion.*(comes? into view|opens the|appears? from)
+force_more_message += .*Hell Sentinel.*(comes? into view|opens the|appears? from)
+force_more_message += .*shrikes? (?!zombie|skeleton).*(comes? into view|opens the|appears? from)
+force_more_message += .*spark wasps? (?!zombie|skeleton).*(comes? into view|opens the|appears? from)
+force_more_message += .*juggernaut.*(comes? into view|opens the|appears? from)
+force_more_message += .*Executioner.*(comes? into view|opens the|appears? from)
+force_more_message += .*('s|s') ghost.*(comes? into view|opens the|appears? from)
+force_more_message += .*Deep elf demonologist.*(comes? into view|opens the|appears? from)
+force_more_message += .*Iron giant.*(comes? into view|opens the|appears? from)
+
+# Torment enemies
+force_more_message += .*Fiend.*(comes? into view|opens the|appears? from)
+force_more_message += .*Tzitzim.*(comes? into view|opens the|appears? from)
+force_more_message += .*lurking horror.*comes? into view
+force_more_message += .*Tormentor.*(comes? into view|opens the|appears? from)
+force_more_message += .*Greater Mumm.*(comes? into view|opens the|appears? from)
+force_more_message += .*Mummy Priest.*(comes? into view|opens the|appears? from)
+force_more_message += .*Curse Toe.*(comes? into view|opens the|appears? from)
+force_more_message += .*Curse Skull.*(comes? into view|opens the|appears? from)
+
+# Paralysis enemies
+force_more_message += .*Ancient Lich.*(comes? into view|opens the|appears? from)
+force_more_message += .*Lich.*(comes? into view|opens the|appears? from)
+force_more_message += .*Giant Eyeball.*(comes? into view|opens the|appears? from)
+force_more_message += .*Ogre Mage.*(comes? into view|opens the|appears? from)
+force_more_message += .*a Wizard.*(comes? into view|opens the|appears? from)
+force_more_message += .*orc sorcerer.*(comes? into view|opens the|appears? from)
+force_more_message += .*sphinx.*(comes? into view|opens the|appears? from)
+force_more_message += .*Great orbs? of eyes.*(comes? into view|opens the|appears? from)
+force_more_message += .*Vampire knight.*(comes? into view|opens the|appears? from)
+
+# Low level baddies
+: if you.xl() <= 10 then
+force_more_message += .*Gnoll.*(comes? into view|opens the|appears? from)
+force_more_message += .*Adder.*(comes? into view|opens the|appears? from)
+force_more_message += .*Orc wizard.*(comes? into view|opens the|appears? from)
+force_more_message += .*Orc priest.*(comes? into view|opens the|appears? from)
+force_more_message += .*Orc warrior.*(comes? into view|opens the|appears? from)
+force_more_message += .*Wyvern.*(comes? into view|opens the|appears? from)
+force_more_message += .*Killer bees? (?!zombie|skeleton).*(comes? into view|opens the|appears? from)
+force_more_message += .*Ogre.*(comes? into view|opens the|appears? from)
+force_more_message += .*sky beast.*(comes? into view|opens the|appears? from)
+force_more_message += .*centaurs? (?!zombie|skeleton).*(comes? into view|opens the|appears? from)
+force_more_message += .*is wielding.*of (electrocution|venom)
+: end
+
+##########
+# Skills #
+##########
+
+force_more_message += Your Shields skill increases to level (4|6|9|15|21|25)
+force_more_message += Your Short Blades skill increases to level (10|12|14)
+force_more_message += Your Long Blades skill increases to level (14|16|18|24)
+force_more_message += Your Maces & Flails skill increases to level (12|16|20|22)
+force_more_message += Your Axes skill increases to level (16|18|20|26)
+force_more_message += Your Polearms skill increases to level (14|16|20|26)
+force_more_message += Your Staves skill increases to level (12|14)
+force_more_message += Your Evocations skill increases to level (6|10|15)
+force_more_message += Your Invocations skill increases to level (6|10)
+
+##############
+# Distortion #
+##############
+
+force_more_message += hits you.*(distortion|chaos)
+force_more_message += warns you.*of (distortion|chaos)
+force_more_message += is wielding.*of (distortion|chaos)
+
