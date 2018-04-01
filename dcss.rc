@@ -63,6 +63,11 @@ autofight_stop = 75
 confirm_butcher = never
 hp_warning = 30
 travel_avoid_terrain = shallow water
+sort_menus = inv: true : equipped, identified, basename, qualname, charged
+autofight_stop = 65
+
+
+###### MORE MESSAGES PROMPTS 
 
 # Abyssal Rune
 force_more_message += Found .* abyssal rune of Zot
